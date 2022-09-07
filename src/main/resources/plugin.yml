@@ -1,0 +1,11 @@
+name: ClassSystemRewrite
+version: '${project.version}'
+main: me.eyrim.natserver.classsystemrewrite.ClassSystemRewrite
+api-version: 1.18
+load: STARTUP
+authors: [ Eyrim ]
+description: A plugin to implement the class system for the server
+commands:
+  giveability:
+    description: Gives the requested item for the requested skill
+    usage: /<command> [DASH|DOUBLE_JUMP]
