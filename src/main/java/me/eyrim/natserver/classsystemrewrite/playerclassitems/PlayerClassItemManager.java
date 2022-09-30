@@ -1,6 +1,5 @@
-package me.eyrim.natserver.classsystemrewrite.playerclasses.items;
+package me.eyrim.natserver.classsystemrewrite.playerclassitems;
 
-import me.eyrim.natserver.classsystemrewrite.abilities.items.AbilityItem;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -29,6 +28,8 @@ public class PlayerClassItemManager {
                 .color(TextColor.color(227, 182, 109))
                 .decorate(TextDecoration.UNDERLINED));
         meta.lore(lore);
+
+        PlayerClassItemPool.addItem(playerClassName, item);
 
         return item;
     }

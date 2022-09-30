@@ -9,3 +9,6 @@ commands:
   giveability:
     description: Gives the requested item for the requested skill
     usage: /<command> [DASH|DOUBLE_JUMP]
+  testinv:
+    description: Tests the inventory from resources/testInventory.json
+    usage: /<command>

@@ -1,0 +1,22 @@
+{
+  "name": "§d§lSelect Your Main Class!",
+  "size": 54,
+  "rows": [
+    [" ", " ", "soldier", "monk", "assassin", "mage", "beserker", " ", " "],
+    [" ", " ", " ", " ", " ", " ", " ", " ", " "],
+    [" ", " ", " ", " ", " ", " ", " ", " ", " "],
+    [" ", " ", " ", " ", " ", " ", " ", " ", " "],
+    [" ", " ", " ", " ", " ", " ", " ", " ", " "],
+    [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+  ],
+  "items": {
+    "soldier": "IRON_SWORD",
+    "monk": "PAPER",
+    "assassin": "POTION",
+    "mage": "ENCHANTED_BOOK",
+    "beserker": "IRON_AXE"
+  },
+  "custom_items": {
+
+  }
+}

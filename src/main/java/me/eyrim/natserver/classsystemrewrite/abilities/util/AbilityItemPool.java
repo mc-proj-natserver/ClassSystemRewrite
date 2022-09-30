@@ -4,7 +4,7 @@ import me.eyrim.natserver.classsystemrewrite.abilities.Dash;
 
 import java.util.Objects;
 
-public class AbilityPool {
+public class AbilityItemPool {
     private static final Ability[] _Abilities = new Ability[] {
             new Dash()
     };

@@ -1,15 +1,14 @@
 package me.eyrim.natserver.classsystemrewrite.playerclasses.mainplayerclasses;
 
 import me.eyrim.natserver.classsystemrewrite.abilities.util.Ability;
-import me.eyrim.natserver.classsystemrewrite.playerclasses.items.PlayerClassItemManager;
+import me.eyrim.natserver.classsystemrewrite.playerclassitems.PlayerClassItemPool;
 import org.bukkit.inventory.ItemStack;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class MonkPlayerClass implements PlayerClass {
     private static final String _CLASS_NAME = "Monk";
     private static final int _MODEL_DATA = 1237;
     private static final Ability[] _ABILITIES = null;
-    private static final ItemStack _ITEM = PlayerClassItemManager.createItem(_CLASS_NAME, _MODEL_DATA);
+    private static final ItemStack _ITEM = PlayerClassItemPool.getItem("Monk");
 
     @Override
     public ItemStack getDisplayItem() {
@@ -23,7 +22,7 @@ public class MonkPlayerClass implements PlayerClass {
 
     @Override
     public Ability[] getAbilities() {
-        throw new NotImplementedException();
+        return null;
     }
 
     @Override

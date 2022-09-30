@@ -1,6 +1,6 @@
 package me.eyrim.natserver.classsystemrewrite.abilities.items;
 
-import me.eyrim.natserver.classsystemrewrite.abilities.util.AbilityPool;
+import me.eyrim.natserver.classsystemrewrite.abilities.util.AbilityItemPool;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -19,6 +19,6 @@ public class AbilityItem extends ItemStack {
     }
 
     public void activateAbility(Player player) {
-        AbilityPool.getAbilityFromName(this._AbilityName).activate(player);
+        AbilityItemPool.getAbilityFromName(this._AbilityName).activate(player);
     }
 }

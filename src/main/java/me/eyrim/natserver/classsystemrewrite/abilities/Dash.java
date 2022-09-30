@@ -1,15 +1,15 @@
 package me.eyrim.natserver.classsystemrewrite.abilities;
 
 import me.eyrim.natserver.classsystemrewrite.abilities.items.AbilityItem;
+import me.eyrim.natserver.classsystemrewrite.abilities.items.AbilityItemPool;
 import me.eyrim.natserver.classsystemrewrite.abilities.util.Ability;
-import me.eyrim.natserver.classsystemrewrite.abilities.items.AbilityItemManager;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public class Dash implements Ability {
     private final String _ABILITY_NAME = "Dash";
     private final int _MODEL_DATA = 1234;
-    private final AbilityItem _ITEM = AbilityItemManager.createItem(_ABILITY_NAME, _MODEL_DATA);
+    private final AbilityItem _ITEM = AbilityItemPool.createItem(_ABILITY_NAME, _MODEL_DATA);
 
     @Override
     public String getAbilityName() {
