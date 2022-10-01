@@ -1,6 +1,6 @@
 name: ClassSystemRewrite
 version: '${project.version}'
-main: me.eyrim.natserver.classsystemrewrite.ClassSystemRewrite
+main: me.eyrim.natserver.classsystemrewrite.Main
 api-version: 1.18
 load: STARTUP
 authors: [ Eyrim ]
