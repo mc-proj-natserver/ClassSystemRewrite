@@ -1,7 +1,7 @@
 package me.eyrim.natserver.classsystemrewrite.abilities.items.commands;
 
 import me.eyrim.natserver.classsystemrewrite.abilities.util.Ability;
-import me.eyrim.natserver.classsystemrewrite.abilities.util.AbilityItemPool;
+import me.eyrim.natserver.classsystemrewrite.abilities.items.AbilityItemPool;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -15,7 +15,8 @@ public class GiveAbilityItem implements CommandExecutor {
         if (args.length > 1) { return false; }
 
         Player player = (Player) sender;
-        Ability ability = AbilityItemPool.getAbilityFromName(args[0]);
+        Ability ability = AbilityItemPool.getItem(args[0]);
+        //Ability ability = AbilityItemPool.getAbilityFromName(args[0]);
 
         // If the inventory is full
         if (player.getInventory().firstEmpty() == -1) {

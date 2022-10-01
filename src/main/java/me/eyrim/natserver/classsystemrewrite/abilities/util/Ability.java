@@ -7,6 +7,5 @@ public interface Ability {
     public String getAbilityName();
     public int getModelData();
     public ItemStack getItem();
-
     public void activate(Player player);
 }
