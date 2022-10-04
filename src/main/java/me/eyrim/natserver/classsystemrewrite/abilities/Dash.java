@@ -1,5 +1,6 @@
 package me.eyrim.natserver.classsystemrewrite.abilities;
 
+import me.eyrim.natserver.classsystemrewrite.abilities.itemutil.ItemPool;
 import org.bukkit.entity.Player;
 
 public class Dash implements Ability {
