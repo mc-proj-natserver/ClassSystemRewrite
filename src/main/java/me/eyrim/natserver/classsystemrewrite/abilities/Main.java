@@ -1,7 +1,10 @@
 package me.eyrim.natserver.classsystemrewrite.abilities;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import me.eyrim.natserver.classsystemrewrite.abilities.io.FileHandling;
 import me.eyrim.natserver.classsystemrewrite.abilities.itemutil.ItemPool;
+import me.eyrim.natserver.classsystemrewrite.abilities.middlemen.TempItem;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -46,7 +49,7 @@ public class Main extends JavaPlugin {
         String itemName;
         ItemStack item;
 
-        // If there are no children
+        // If there are no children (meaning there are no custom items to load)
         if (customItems == null) {
             return;
         }
@@ -56,13 +59,26 @@ public class Main extends JavaPlugin {
             if (file.isDirectory()) { continue; }
             if (file.isHidden()) { continue; }
 
-            // ItemName will be extension-less file name
-            itemName = FileHandling.removeExtension(file.getName());
-            // Read byte file and convert it into an item stack
-            item = ItemStack.deserializeBytes(FileHandling.readBytes(file.getPath()));
+            // If the file is a json file
+            if (file.getPath().matches(".*\\.json")) {
+                item = deserializeJsonFile(file);
 
-            ItemPool.registerJsonItem(itemName, item);
+                // ItemName will be extension-less file name
+                itemName = FileHandling.removeExtension(file.getName());
+
+                ItemPool.registerJsonItem(itemName, item);
+            }
         }
+    }
+
+    private static ItemStack deserializeJsonFile(File file) {
+        Gson gson = new GsonBuilder().serializeNulls().create();
+        TempItem item = gson.fromJson(
+                FileHandling.readFileToString(file.getAbsolutePath()),
+                TempItem.class
+        );
+
+        return item.toItemStack();
     }
 
     private static void registerCommands() {

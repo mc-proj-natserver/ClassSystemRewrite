@@ -18,15 +18,6 @@ public class ItemBuilder {
 
     public ItemBuilder(Material material, int count) {
         item = new ItemStack(material, count);
-
-        Component comp = Component.text(
-                "test"
-        ).color(
-                TextColor.color(255, 10, 130)
-        ).decorate(
-                TextDecoration.
-        );
-
     }
 
     public ItemBuilder addEnchantment(HashMap<Enchantment, Integer> enchants) {
