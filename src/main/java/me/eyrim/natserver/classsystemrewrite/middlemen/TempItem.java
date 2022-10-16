@@ -1,7 +1,7 @@
-package me.eyrim.natserver.classsystemrewrite.abilities.middlemen;
+package me.eyrim.natserver.classsystemrewrite.middlemen;
 
 import com.google.gson.annotations.SerializedName;
-import me.eyrim.natserver.classsystemrewrite.abilities.itemutil.ItemBuilder;
+import me.eyrim.natserver.classsystemrewrite.itemutil.ItemBuilder;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

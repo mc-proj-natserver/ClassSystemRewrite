@@ -1,7 +1,7 @@
 package me.eyrim.natserver.classsystemrewrite.abilities.commands;
 
 import me.eyrim.natserver.classsystemrewrite.abilities.AbilityItem;
-import me.eyrim.natserver.classsystemrewrite.abilities.itemutil.ItemPool;
+import me.eyrim.natserver.classsystemrewrite.itemutil.ItemPool;
 import me.eyrim.natserver.classsystemrewrite.abilities.Main;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

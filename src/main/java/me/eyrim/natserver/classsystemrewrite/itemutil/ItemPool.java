@@ -1,6 +1,7 @@
-package me.eyrim.natserver.classsystemrewrite.abilities.itemutil;
+package me.eyrim.natserver.classsystemrewrite.itemutil;
 
 import me.eyrim.natserver.classsystemrewrite.abilities.AbilityItem;
+import me.eyrim.natserver.classsystemrewrite.playerclasses.PlayerClassItem;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Hashtable;

@@ -1,4 +1,4 @@
-package me.eyrim.natserver.classsystemrewrite.abilities.middlemen;
+package me.eyrim.natserver.classsystemrewrite.middlemen;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;

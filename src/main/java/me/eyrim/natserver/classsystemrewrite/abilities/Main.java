@@ -3,8 +3,10 @@ package me.eyrim.natserver.classsystemrewrite.abilities;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import me.eyrim.natserver.classsystemrewrite.abilities.io.FileHandling;
-import me.eyrim.natserver.classsystemrewrite.abilities.itemutil.ItemPool;
-import me.eyrim.natserver.classsystemrewrite.abilities.middlemen.TempItem;
+import me.eyrim.natserver.classsystemrewrite.inventoryutil.InventoryParser;
+import me.eyrim.natserver.classsystemrewrite.inventoryutil.SkillTreeInventory;
+import me.eyrim.natserver.classsystemrewrite.itemutil.ItemPool;
+import me.eyrim.natserver.classsystemrewrite.middlemen.TempItem;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -21,6 +23,8 @@ public class Main extends JavaPlugin {
         registerCommands();
         registerEvents();
         registerCustomItems();
+        // Relies on the above working
+        registerCustominventories();
     }
 
     @Override
@@ -71,12 +75,46 @@ public class Main extends JavaPlugin {
         }
     }
 
-    private static ItemStack deserializeJsonFile(File file) {
+    private static void registerCustominventories() {
+        // Custom Items are stored in resources/skillTrees
+
+        // Gets the children of the above directory
+        File[] skillTrees = new File("skillTrees/assassin/").listFiles();
+        String inventoryName;
+        SkillTreeInventory inventory;
         Gson gson = new GsonBuilder().serializeNulls().create();
-        TempItem item = gson.fromJson(
-                FileHandling.readFileToString(file.getAbsolutePath()),
-                TempItem.class
-        );
+
+        // If there are no children (meaning there are no custom items to load)
+        if (skillTrees == null) {
+            return;
+        }
+
+        // Iterate through each file
+        for (File file : skillTrees) {
+            if (file.isDirectory()) { continue; }
+            if (file.isHidden()) { continue; }
+
+            // If the file is a json file
+            if (file.getPath().matches(".*\\.json")) {
+                inventory = InventoryParser.serializeInventory(file.getAbsolutePath());
+
+            }
+
+
+            /*// If the file is a json file
+            if (file.getPath().matches(".*\\.json")) {
+                item = deserializeJsonFile(file);
+
+                // ItemName will be extension-less file name
+                itemName = FileHandling.removeExtension(file.getName());
+
+                ItemPool.registerJsonItem(itemName, item);*/
+        }
+    }
+
+    private static ItemStack deserializeJsonFile(File file) {
+
+
 
         return item.toItemStack();
     }

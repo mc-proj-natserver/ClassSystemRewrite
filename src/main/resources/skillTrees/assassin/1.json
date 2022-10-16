@@ -1,0 +1,26 @@
+{
+  "name": "§d§lAssassin Skill Tree Level 1",
+  "size": 54,
+  "rows": [
+    [" ", " ", "level", " ", "assassin", " ", "current_exp", " ", " "],
+    ["back_page", " ", " ", " ", " ", " ", " ", " ", "next_page"],
+    [" ", " ", " ", " ", "nimble", " ", " ", " ", " "],
+    [" ", " ", "dodge_roll", " ", " ", " ", "adrenaline_rush", " ", " "],
+    ["speedy", " ", " ", " ", " ", " ", " ", " ", "cats_leap"],
+    [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+  ],
+  "items": {
+  },
+  "custom_items": {
+    "level": "player_class_level_item",
+    "assassin": "assassin_display_item",
+    "current_exp": "player_class_exp_item",
+    "back_page": "back_page",
+    "next_page": "next_page",
+    "nimble": "nimble_ability_item",
+    "dodge_roll": "dodge_roll_ability_item",
+    "adrenaline_rush": "adrenaline_rush_ability_item",
+    "speedy": "speedy_ability_item",
+    "cats_leap": "cats_leap_ability_item"
+  }
+}

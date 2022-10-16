@@ -1,11 +1,8 @@
-package me.eyrim.natserver.classsystemrewrite.abilities.itemutil;
+package me.eyrim.natserver.classsystemrewrite.itemutil;
 
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.TextColor;
-import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 
