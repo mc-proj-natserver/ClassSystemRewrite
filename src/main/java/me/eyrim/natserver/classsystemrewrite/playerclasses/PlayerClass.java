@@ -9,6 +9,7 @@ import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
+@Deprecated
 public interface PlayerClass {
     public Component getDisplayName();
     public Ability[] getAbilities();

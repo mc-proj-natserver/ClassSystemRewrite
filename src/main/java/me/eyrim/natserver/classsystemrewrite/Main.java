@@ -1,12 +1,14 @@
-package me.eyrim.natserver.classsystemrewrite.abilities;
+package me.eyrim.natserver.classsystemrewrite;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import me.eyrim.natserver.classsystemrewrite.abilities.commands.GiveAbilityItemCommand;
 import me.eyrim.natserver.classsystemrewrite.abilities.io.FileHandling;
 import me.eyrim.natserver.classsystemrewrite.inventoryutil.InventoryParser;
 import me.eyrim.natserver.classsystemrewrite.inventoryutil.SkillTreeInventory;
 import me.eyrim.natserver.classsystemrewrite.itemutil.ItemPool;
 import me.eyrim.natserver.classsystemrewrite.middlemen.TempItem;
+import me.eyrim.natserver.classsystemrewrite.testevents.PlayerDropItemEvent;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -17,6 +19,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 
 public class Main extends JavaPlugin {
+    public static SkillTreeInventory inventory;
+
     @Override
     public void onEnable() {
         // Register commands
@@ -24,7 +28,7 @@ public class Main extends JavaPlugin {
         registerEvents();
         registerCustomItems();
         // Relies on the above working
-        registerCustominventories();
+        registerCustomInventories();
     }
 
     @Override
@@ -49,9 +53,10 @@ public class Main extends JavaPlugin {
         // Custom Items are stored in resources/customItems
 
         // Gets the children of the above directory
-        File[] customItems = new File("customItems/").listFiles();
+        File[] customItems = new File("C:\\Users\\gamin\\Desktop\\natserver\\ClassSystemRewrite\\src\\main\\resources\\customItems").listFiles();
         String itemName;
         ItemStack item;
+        Gson gson = new GsonBuilder().serializeNulls().create();
 
         // If there are no children (meaning there are no custom items to load)
         if (customItems == null) {
@@ -65,7 +70,7 @@ public class Main extends JavaPlugin {
 
             // If the file is a json file
             if (file.getPath().matches(".*\\.json")) {
-                item = deserializeJsonFile(file);
+                item = deserialiseTempItem(file.getAbsolutePath());
 
                 // ItemName will be extension-less file name
                 itemName = FileHandling.removeExtension(file.getName());
@@ -75,11 +80,11 @@ public class Main extends JavaPlugin {
         }
     }
 
-    private static void registerCustominventories() {
+    private static void registerCustomInventories() {
         // Custom Items are stored in resources/skillTrees
 
         // Gets the children of the above directory
-        File[] skillTrees = new File("skillTrees/assassin/").listFiles();
+        File[] skillTrees = new File("C:\\Users\\gamin\\Desktop\\natserver\\ClassSystemRewrite\\src\\main\\resources\\skillTrees").listFiles();
         String inventoryName;
         SkillTreeInventory inventory;
         Gson gson = new GsonBuilder().serializeNulls().create();
@@ -98,8 +103,10 @@ public class Main extends JavaPlugin {
             if (file.getPath().matches(".*\\.json")) {
                 inventory = InventoryParser.serializeInventory(file.getAbsolutePath());
 
-            }
+                System.out.println(file.getAbsolutePath());
 
+                Main.inventory = inventory;
+            }
 
             /*// If the file is a json file
             if (file.getPath().matches(".*\\.json")) {
@@ -112,18 +119,19 @@ public class Main extends JavaPlugin {
         }
     }
 
-    private static ItemStack deserializeJsonFile(File file) {
-
-
+    private static ItemStack deserialiseTempItem(String filePath) {
+        Gson gson = new GsonBuilder().serializeNulls().create();
+        String json = FileHandling.readFileToString(filePath);
+        TempItem item = gson.fromJson(json, TempItem.class);
 
         return item.toItemStack();
     }
 
-    private static void registerCommands() {
-
+    private void registerCommands() {
+        //getCommand("customItem").setExecutor(new GiveAbilityItemCommand());
     }
 
-    private static void registerEvents() {
-
+    private void registerEvents() {
+        getServer().getPluginManager().registerEvents(new PlayerDropItemEvent(), this);
     }
 }

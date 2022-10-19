@@ -1,0 +1,44 @@
+{
+  "material": "STICK",
+  "quantity": 1,
+  "lore": [
+    {
+      "text": "I am test lore",
+      "rgb": [
+        233,
+        10,
+        155
+      ],
+      "decoration": [
+        "UNDERLINED",
+        "BOLD"
+      ]
+    },
+    {
+      "text": "I am another line of test lore",
+      "rgb": [
+        10,
+        47,
+        60
+      ],
+      "decoration": [
+        "UNDERLINED"
+      ]
+    }
+  ],
+  "item_flags": [
+  ],
+  "custom_model_data": 1234,
+  "is_unbreakable": true,
+  "item_name": {
+    "text": "I'm fast as fuck",
+    "rgb": [
+      1,
+      6,
+      255
+    ],
+    "decoration": [
+      "BOLD"
+    ]
+  }
+}

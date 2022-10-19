@@ -2,14 +2,19 @@ package me.eyrim.natserver.classsystemrewrite.playerclasses;
 
 import org.bukkit.inventory.ItemStack;
 
-public class PlayerClassItem extends ItemStack {
-    private final PlayerClass PLAYER_CLASS;
+import java.util.Hashtable;
 
-    public PlayerClassItem(PlayerClass playerClass) {
-        this.PLAYER_CLASS = playerClass;
+public class PlayerClassItem extends ItemStack {
+    private ItemStack ITEM = null;
+    private static final Hashtable<String, PlayerClassItem> PLAYER_CLASS_ITEMS = new Hashtable<>();
+
+    static {
+        for (PlayerClasses playerClass : PlayerClasses.values()) {
+            PlayerClassItem.PLAYER_CLASS_ITEMS.put(playerClass.getPlayerClassName(), playerClass.getDisplayItem());
+        }
     }
 
-    public PlayerClass getPlayerClassItem() {
-        return this.PLAYER_CLASS;
+    public PlayerClassItem(ItemStack item) {
+        this.ITEM = item;
     }
 }

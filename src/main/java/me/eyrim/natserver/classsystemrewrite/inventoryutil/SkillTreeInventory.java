@@ -1,6 +1,7 @@
 package me.eyrim.natserver.classsystemrewrite.inventoryutil;
 
 import com.google.gson.annotations.SerializedName;
+import me.eyrim.natserver.classsystemrewrite.itemutil.ItemPool;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -44,10 +45,27 @@ public class SkillTreeInventory implements InventoryHolder {
         return inv;
     }
 
+    /**
+     * Maps the string representation of a Material to the Material version and then converts it to an item stack
+     * @param slot The string representation of the Material
+     * @return A new ItemStack with a quantity of 1 of the Material specified in slot
+     */
     private ItemStack getItem(String slot) { // TODO: 18/09/2022 Add capability for custom items
         if (Objects.equals(slot, " ")) { return new ItemStack(Material.AIR, 1); }
 
-        return new ItemStack(Material.getMaterial(_Items.get(slot)), 1);
+        Material material = Material.getMaterial(_Items.get(slot));
 
+        // If the material is null, then it's not a vanilla item
+        if (material == null) {
+            // If the custom item isn't loaded
+            if (ItemPool.getJsonItem(_CustomItems.get(slot)) == null) {
+                throw new IllegalArgumentException("Material was not found: " + slot + "\nCheck the spelling and that the custom item loaded correctly");
+            }
+
+            // Return the custom item
+            return ItemPool.getJsonItem(_CustomItems.get(slot));
+        }
+
+        return new ItemStack(material, 1);
     }
 }

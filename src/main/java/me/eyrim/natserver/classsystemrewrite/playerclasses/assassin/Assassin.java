@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import java.util.ArrayList;
 import java.util.List;
 
+@Deprecated
 public class Assassin implements PlayerClass {
     // TODO: 16/10/2022 Fill out \/\/\/\/\/\/\/
     private static List<Ability> ABILITIES;

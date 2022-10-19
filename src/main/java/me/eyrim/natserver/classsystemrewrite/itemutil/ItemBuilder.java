@@ -5,13 +5,14 @@ import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class ItemBuilder {
-    private ItemStack item;
+    private final ItemStack item;
 
     public ItemBuilder(Material material, int count) {
         item = new ItemStack(material, count);
@@ -64,7 +65,11 @@ public class ItemBuilder {
     }
 
     public ItemBuilder setDisplayName(Component displayName) {
-        item.getItemMeta().displayName(displayName);
+        //item.setItemMeta(item.getItemMeta().displayName(displayName));
+        ItemMeta meta = this.item.getItemMeta();
+        meta.displayName(displayName);
+
+        this.item.setItemMeta(meta);
 
         return this;
     }

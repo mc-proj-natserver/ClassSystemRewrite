@@ -50,14 +50,12 @@ public class TempItem {
     // TODO: 13/10/2022 Everything below here should probably be refactored
     public ItemStack toItemStack() {
         try {
-            HashMap<Enchantment, Integer> enchants = stringsToEnchants(this.enchants);
+            //HashMap<Enchantment, Integer> enchants = stringsToEnchants(this.enchants);
             ItemFlag[] flags = stringsToItemFlags(this.itemFlags);
             List<Component> convertedToComponents = tempComponentToComponent(this.lore);
 
-            ItemStack item = new ItemBuilder(Material.getMaterial(this.material), this.quantity)
-                    .addEnchantment(
-                            stringsToEnchants(this.enchants)
-                    ).setCustomModelData(
+            return new ItemBuilder(Material.getMaterial(this.material), this.quantity)
+                    .setCustomModelData(
                             this.customModelData
                     ).setUnbreakable(
                             this.isUnbreakable
@@ -68,14 +66,16 @@ public class TempItem {
                     ).setDisplayName(
                             this.itemName.toComponent()
                     ).create();
-
-            return item;
         } catch (Exception e) {
             // Log the failure to register the item
             Bukkit.getLogger().log(Level.WARNING, e.getMessage());
 
             return null;
         }
+    }
+
+    public String getMaterial() {
+        return this.material;
     }
 
     private static List<Component> tempComponentToComponent(List<TempComponent> lore) {
@@ -88,7 +88,7 @@ public class TempItem {
         return newLore;
     }
 
-    private static HashMap<Enchantment, Integer> stringsToEnchants(Hashtable<String, Integer> enchants) throws IllegalArgumentException {
+    /*private static HashMap<Enchantment, Integer> stringsToEnchants(Hashtable<String, Integer> enchants) throws IllegalArgumentException {
         HashMap<Enchantment, Integer> newMap = new HashMap<>();
         Enumeration<String> keyEnum = enchants.keys();
         String currentKey;
@@ -106,12 +106,14 @@ public class TempItem {
         }
 
         return newMap;
-    }
+    }*/
 
     private static ItemFlag[] stringsToItemFlags(String[] flags) {
         List<ItemFlag> newFlags = new ArrayList<>(flags.length);
 
         for (String s : flags) {
+            System.out.println(s);
+
             newFlags.add(ItemFlag.valueOf(s));
         }
 
