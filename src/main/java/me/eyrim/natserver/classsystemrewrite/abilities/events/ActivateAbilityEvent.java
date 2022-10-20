@@ -6,6 +6,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
+/**
+ * Contains the events for activating an ability. <br/><br/>
+ * This method actually listens for PlayerInteractEvent's and then deduces whether an ability item was activated. <br\><br\>
+ * If an ability item was activated, then the ability will be activated.
+ */
 public class ActivateAbilityEvent implements Listener {
     @EventHandler
     public void onInteractEvent(PlayerInteractEvent event) {

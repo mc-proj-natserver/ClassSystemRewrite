@@ -3,6 +3,11 @@ package me.eyrim.natserver.classsystemrewrite.abilities;
 import me.eyrim.natserver.classsystemrewrite.itemutil.ItemPool;
 import org.bukkit.entity.Player;
 
+/**
+ * Allows the player to dash forward. <br\> <br\>
+ *
+ * This class implements Ability.
+ */
 public class Dash implements Ability {
     private final String ABILITY_NAME = "Dash";
     private final int MODEL_DATA = 1234;
