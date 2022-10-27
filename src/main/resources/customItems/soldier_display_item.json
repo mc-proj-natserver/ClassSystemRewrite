@@ -1,5 +1,5 @@
 {
-  "material": "SADDLE",
+  "material": "IRON_SWORD",
   "quantity": 1,
   "lore": [
     {
@@ -15,7 +15,7 @@
       ]
     },
     {
-      "text": "I am another line of test lore",
+      "text": "I am another line of test soldier lore",
       "rgb": [
         10,
         47,
@@ -31,7 +31,7 @@
   "custom_model_data": 1234,
   "is_unbreakable": true,
   "item_name": {
-    "text": "Assassins are sneaky and stuff",
+    "text": "Good soldiers follow orders",
     "rgb": [
       1,
       6,

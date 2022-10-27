@@ -2,13 +2,11 @@ package me.eyrim.natserver.classsystemrewrite;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import me.eyrim.natserver.classsystemrewrite.abilities.commands.GiveAbilityItemCommand;
 import me.eyrim.natserver.classsystemrewrite.abilities.io.FileHandling;
 import me.eyrim.natserver.classsystemrewrite.inventoryutil.InventoryParser;
-import me.eyrim.natserver.classsystemrewrite.inventoryutil.SkillTreeInventory;
+import me.eyrim.natserver.classsystemrewrite.inventoryutil.InventoryPool;
 import me.eyrim.natserver.classsystemrewrite.itemutil.ItemPool;
 import me.eyrim.natserver.classsystemrewrite.middlemen.TempItem;
-import me.eyrim.natserver.classsystemrewrite.testevents.PlayerDropItemEvent;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -19,13 +17,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 
 public class Main extends JavaPlugin {
-    public static SkillTreeInventory inventory;
-
     @Override
     public void onEnable() {
         // Register commands
         registerCommands();
         registerEvents();
+
         registerCustomItems();
         // Relies on the above working
         registerCustomInventories();
@@ -56,7 +53,6 @@ public class Main extends JavaPlugin {
         File[] customItems = new File("C:\\Users\\gamin\\Desktop\\natserver\\ClassSystemRewrite\\src\\main\\resources\\customItems").listFiles();
         String itemName;
         ItemStack item;
-        Gson gson = new GsonBuilder().serializeNulls().create();
 
         // If there are no children (meaning there are no custom items to load)
         if (customItems == null) {
@@ -85,9 +81,6 @@ public class Main extends JavaPlugin {
 
         // Gets the children of the above directory
         File[] skillTrees = new File("C:\\Users\\gamin\\Desktop\\natserver\\ClassSystemRewrite\\src\\main\\resources\\skillTrees").listFiles();
-        String inventoryName;
-        SkillTreeInventory inventory;
-        Gson gson = new GsonBuilder().serializeNulls().create();
 
         // If there are no children (meaning there are no custom items to load)
         if (skillTrees == null) {
@@ -101,21 +94,8 @@ public class Main extends JavaPlugin {
 
             // If the file is a json file
             if (file.getPath().matches(".*\\.json")) {
-                inventory = InventoryParser.serializeInventory(file.getAbsolutePath());
-
-                System.out.println(file.getAbsolutePath());
-
-                Main.inventory = inventory;
+                InventoryPool.registerSkillTreeInventory(FileHandling.removeExtension(file.getName()), InventoryParser.serializeInventory(file.getAbsolutePath()));
             }
-
-            /*// If the file is a json file
-            if (file.getPath().matches(".*\\.json")) {
-                item = deserializeJsonFile(file);
-
-                // ItemName will be extension-less file name
-                itemName = FileHandling.removeExtension(file.getName());
-
-                ItemPool.registerJsonItem(itemName, item);*/
         }
     }
 
@@ -132,6 +112,5 @@ public class Main extends JavaPlugin {
     }
 
     private void registerEvents() {
-        getServer().getPluginManager().registerEvents(new PlayerDropItemEvent(), this);
     }
 }
